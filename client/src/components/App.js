@@ -38,7 +38,8 @@ class App extends React.Component {
     
 
     let tutorial = {dependenicy: tutInfo}
-    getScore('http://localhost:3000/api/computeScore', tutorial)
+    getScore('http://34.227.176.215:3000/api/computeScore', tutorial)
+    //getScore('http://localhost:3000/api/computeScore', tutorial)
     .then(data => this.makeScore(data))
     .catch(error => console.error(error))
 

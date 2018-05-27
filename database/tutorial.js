@@ -29,12 +29,14 @@
    
 // };
 
-//var mongoDB = 'mongodb://chazie9:firebird77@ds135810.mlab.com:35810/is_it_current';
+// var mongoDB = 'mongodb://chazie9:firebird77@ds135810.mlab.com:35810/is_it_current';
+// var mongoose = require('mongoose');
+// mongoose.connect(mongoDB);
+// mongoose.connect('mongodb://localhost/isItCurrent');
+
 var mongoDB = process.env.MONGODB_URI || 'mongodb://chazie9:firebird77@ds135810.mlab.com:35810/is_it_current';
 var mongoose = require('mongoose');
 mongoose.connect(mongoDB);
-// mongoose.connect('mongodb://localhost/isItCurrent');
-
 
 let tutorialSchema = mongoose.Schema ({
     author: String,

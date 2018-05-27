@@ -9,10 +9,12 @@ const PORT = process.env.PORT || 3000;
 const axios = require('axios');
 const app = express();
 const fetch = require('node-fetch');
+
 var helmet = require('helmet');
 
 const prepForCompute = require('./helpers/prepForCompute');
  
+require('dotenv').config();
 
 app.use(morgan('dev'));
 app.use(cors());
