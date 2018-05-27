@@ -1,0 +1,10 @@
+.main-tut-submit {
+    border: 1px solid white;
+    background: white;
+    padding: 26px 32px 32px;
+    max-width: 900px;
+}
+
+.insertPackage {
+    height: 300px;
+}

@@ -16,7 +16,10 @@ var config = {
         test : /\.jsx?/,
         include : APP_DIR,
         exclude : /node_modules/,
-        loader : 'babel-loader'
+        loader : 'babel-loader',
+        query: {
+          presets: ['react', "stage-2"]
+      }
       },
       {
         test: /\.css$/,
