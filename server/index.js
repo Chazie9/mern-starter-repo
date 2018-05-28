@@ -180,7 +180,21 @@ app.put('/api/computeScore', function(req, res){
                 db.addTutorial(tutorial, function(req, res){
                     console.log('i am creating a tutorial', tutorial)
                 });
-                res.send({name: name, author: author, score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray })
+
+                let gitArray = gitUrl[0].split('/');
+                console.log('I want the user', gitArray[3])
+                
+                fetch(`https://api.github.com/users/${gitArray[3]}`)
+                .then(res => res.text())
+                .then(body => {
+                    obj = JSON.parse(body);
+    
+                    console.log('I og the url avatar', obj)
+                    res.send({name: name, author: author, authorImg: obj.avatar_url ,score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray })
+                })
+
+
+                // res.send({name: name, author: author, score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray })
             }
         })
     })
