@@ -49,7 +49,7 @@ class Results extends Component {
                                         <div className="threeParts">
                                             <Card>
 
-                                                <div id="overview-wegot-review" className="overviewWegotReview">
+                                                {/* <div id="overview-wegot-review" className="overviewWegotReview">
                                                     <div className="overviewWegotDetailsBox">
                                                     <div className="overviewWegotRatingDetails">2</div>
                                                     <span className="overviewWegotDetailsSubtitle">Major</span>
@@ -57,6 +57,21 @@ class Results extends Component {
                                                     <div className="overviewWegotDetailsBox overviewWegotMidbox">
                                                     <div className="overviewWegotRatingDetails">4</div>
                                                     <span className="overviewWegotDetailsSubtitle">Minor</span>
+                                                    </div>
+                                                    <div className="overviewWegotDetailsBox">
+                                                    <div className="overviewWegotRatingDetails">{this.props.theScore}</div>
+                                                    <span className="overviewWegotDetailsSubtitle">Total Score</span>
+                                                    </div>
+                                                </div> */}
+
+                                                <div id="overview-wegot-review" className="overviewWegotReview">
+                                                    <div className="overviewWegotDetailsBox Pass">
+                                                    <div className="overviewWegotRatingDetails">{this.props.pass.length}</div>
+                                                    <span className="overviewWegotDetailsSubtitle">Pass</span>
+                                                    </div>
+                                                    <div className="overviewWegotDetailsBox overviewWegotMidbox Fail">
+                                                    <div className="overviewWegotRatingDetails">{this.props.fail.length}</div>
+                                                    <span className="overviewWegotDetailsSubtitle">Fail</span>
                                                     </div>
                                                     <div className="overviewWegotDetailsBox">
                                                     <div className="overviewWegotRatingDetails">{this.props.theScore}</div>
@@ -72,8 +87,11 @@ class Results extends Component {
                                             <div className="github">
                                                 <Nav>
                                                     <NavItem>
+                                                        {console.log(this.props.gitUrl)}
+                                                        {console.log(this.props.tutorialLink)}
                                                         <NavLink href={this.props.gitUrl}>Check out this project on Github</NavLink>
                                                         <NavLink href="#">Sign-up for future discounts on this course</NavLink>
+                                                        <NavLink href={this.props.tutorialLink}>Check out the tutorial's homepage</NavLink>
                                                     </NavItem>   
                                                 </Nav>               
                                             </div>

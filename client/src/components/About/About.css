@@ -1,4 +1,9 @@
 .about-me {
-    margin: 16px;
-    padding: 16px;
+    /* margin: 16px;
+    padding: 16px; */
+    border: 1px solid white;
+    background: white;
+    padding: 26px 32px 32px;
+    margin-top: 12px;
+    margin-bottom: 750px;
 }

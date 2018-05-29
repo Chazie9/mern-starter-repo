@@ -31,7 +31,11 @@ class App extends React.Component {
       gitUrl: '',
       techStack: [],
       askQuestions: true,
-      isOpen: false
+      isOpen: false,
+      tutorialLink: '',
+      showError: false,
+      pass: [],
+      fail: []
     }
     //this.showTheResults = this.showTheResults.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -52,18 +56,30 @@ class App extends React.Component {
       gitUrl: data.gitUrl,
       techStack: data.scoreDetails,
       showResults: !this.state.showResults, 
-      askQuestions: !this.state.askQuestions
+      askQuestions: !this.state.askQuestions,
+      tutorialLink: data.courseUrl,
+      pass: data.pass,
+      fail: data.fail
     })
   }
 
-  showTheResults = (tutInfo) => {
-    console.log('showing', tutInfo)
+  displayError = () => {
+    // this.setState({
+    //   showError: !this.state.showError
+    // })
+    alert('There was an error please check the package.json')
+  }
 
-    let tutorial = {dependenicy: tutInfo}
+  showTheResults = (tutInfo, link) => {
+    
+    //let tutInfo = {json: json, link, link}
+    console.log('showing', tutInfo)
+    let tutorial = {dependenicy: tutInfo, link, link}
     getScore('http://34.227.176.215:3000/api/computeScore', tutorial)
     //getScore('http://localhost:3000/api/computeScore', tutorial)
     .then(data => this.makeScore(data))
-    .catch(error => console.error(error))
+    //.catch(error => console.error(error), this.displayError())
+    .catch(error => { if(error) {this.displayError()} })
 
     let theScore;
 
@@ -117,7 +133,7 @@ class App extends React.Component {
                   askQuestions ? (
                     <CollectMoreInfo />
                   ) : (                  
-                    <Results author={this.state.author} title={this.state.name} gitUrl={this.state.gitUrl} theScore={this.state.theScore} techStack={this.state.techStack}/>
+                    <Results tutorialLink={this.state.tutorialLink} author={this.state.author} title={this.state.name} gitUrl={this.state.gitUrl} theScore={this.state.theScore} techStack={this.state.techStack} pass={this.state.pass} fail={this.state.fail}/>
                   )
                 ) : (                  
                   <SubmitTutorial showTheResults={this.showTheResults}/>

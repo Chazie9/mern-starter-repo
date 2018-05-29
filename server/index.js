@@ -53,7 +53,11 @@ app.put('/api/computeScore', function(req, res){
     let author = []
     let gitUrl = []
     let name = []
-    let listOfDependicies = []
+    let courseUrl = req.body.link;
+    let listOfDependicies = [];
+    let orginalSubmission = req.body.dependenicy
+
+    console.log(courseUrl, 'body body body')
 
     arrayOfLines.forEach((line) => {
         let pendicy = [];
@@ -172,9 +176,10 @@ app.put('/api/computeScore', function(req, res){
                     title: name,
                     techStack: scoreDetailsArray,
                     currentScore: finalScore,
-                    courseUrl: '',
+                    courseUrl: courseUrl,
                     thumbnail: '',
                     githubUrl: gitUrl[0],
+                    orginalSubmission: orginalSubmission
                 }
     
                 db.addTutorial(tutorial, function(req, res){
@@ -190,9 +195,8 @@ app.put('/api/computeScore', function(req, res){
                     obj = JSON.parse(body);
     
                     console.log('I og the url avatar', obj)
-                    res.send({name: name, author: author, authorImg: obj.avatar_url ,score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray })
+                    res.send({name: name, author: author, authorImg: obj.avatar_url ,score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray, courseUrl: courseUrl })
                 })
-
 
                 // res.send({name: name, author: author, score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray })
             }

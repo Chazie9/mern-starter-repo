@@ -34,11 +34,12 @@
 // mongoose.connect(mongoDB);
 // mongoose.connect('mongodb://localhost/isItCurrent');
 
-var mongoDB = process.env.MONGODB_URI || 'mongodb://chazie99:firebird65@ds135810.mlab.com:35810/is_it_current';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://chazie9:firebird77@ds135810.mlab.com:35810/is_it_current';
 var mongoose = require('mongoose');
 mongoose.connect(mongoDB);
 
 let tutorialSchema = mongoose.Schema ({
+    orginalSubmission: String,
     author: String,
     title: String,
     techStack: Array,
