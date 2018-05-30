@@ -32,7 +32,6 @@ class Results extends Component {
                                         Course Title - {this.props.title}
                                     </div>
                                     <div className="author">
-                                        {console.log(this.props.author, 'the author is ....')}
                                         Author: {(this.props.author[0] === "") ? (<Input placeholder="Please enter the author"/>) : (this.props.author)}
                                     </div>
                                     <div className="techstack author">
@@ -78,7 +77,6 @@ class Results extends Component {
                                                     <span className="overviewWegotDetailsSubtitle">Total Score</span>
                                                     </div>
                                                 </div>
-
                                             </Card>
                                         </div>
                                     </Row>
@@ -87,8 +85,6 @@ class Results extends Component {
                                             <div className="github">
                                                 <Nav>
                                                     <NavItem>
-                                                        {console.log(this.props.gitUrl)}
-                                                        {console.log(this.props.tutorialLink)}
                                                         <NavLink href={this.props.gitUrl}>Check out this project on Github</NavLink>
                                                         <NavLink href="#">Sign-up for future discounts on this course</NavLink>
                                                         <NavLink href={this.props.tutorialLink}>Check out the tutorial's homepage</NavLink>
@@ -137,27 +133,3 @@ class Results extends Component {
 }
 
 export default Results;
-
-
-
-// <Col lg="4">
-//     <div className="techstack">
-//         Tech Used - { this.props.techStack.length}
-
-//     </div>
-// </Col>
-// <Col lg="4">
-//     <div className="linktocourse">
-//         <Button className="primary"> Link to Course </Button>
-//         {/* <Input /> */}
-//     </div>
-// </Col>
-// <Col lg="4">
-//     <div className="github">
-//         <Nav>
-//             <NavItem>
-//                 <NavLink href={this.props.gitUrl}>Github Link</NavLink>
-//             </NavItem>   
-//         </Nav>               
-//     </div>
-// </Col>

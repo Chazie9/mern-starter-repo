@@ -71,9 +71,6 @@ class App extends React.Component {
   }
 
   showTheResults = (tutInfo, link) => {
-    
-    //let tutInfo = {json: json, link, link}
-    console.log('showing', tutInfo)
     let tutorial = {dependenicy: tutInfo, link, link}
     getScore('http://34.227.176.215:3000/api/computeScore', tutorial)
     //getScore('http://localhost:3000/api/computeScore', tutorial)

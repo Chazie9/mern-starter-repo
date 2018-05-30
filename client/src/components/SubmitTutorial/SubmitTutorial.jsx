@@ -21,25 +21,17 @@ class SubmitTutorial extends Component {
     }
     handleChange2(event) {
         this.setState({value2: event.target.value});
-      }
+    }
   
     handleSubmit(event) {
-      console.log('memem')
-      //event.preventDefault();
-
       this.validateFields();
     }
 
     validateFields() {
         let pJson = this.state.value;
         let link = this.state.value2
-        // if(pJson === undefined || link === undefined) {
-        //     return alert("is you cant leave something blank!")
-        // }
-
-
+    
         // pJson tests
-        console.log('i am json!!!')
         let splitJson = pJson.split('')
         if(splitJson.length < 120) {
             this.setState({

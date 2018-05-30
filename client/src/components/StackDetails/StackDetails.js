@@ -4,8 +4,6 @@ import './StackDetails.css';
 
 class StackDetails extends Component {
 
-
-
   render() {
     return (
       <Table hover>
