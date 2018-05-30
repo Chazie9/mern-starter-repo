@@ -24,6 +24,7 @@ class Results extends Component {
                         <Col md="8">
                             <div className="overView">  
                                     <div className="scoreContainer">
+                                    {console.log(this.props, 'the resulting props')}
                                         <div className="score">
                                             Yes! | Score - {this.props.theScore}
                                         </div>
@@ -32,10 +33,13 @@ class Results extends Component {
                                         Course Title - {this.props.title}
                                     </div>
                                     <div className="author">
-                                        Author: {(this.props.author[0] === "") ? (<Input placeholder="Please enter the author"/>) : (this.props.author)}
+                                    
+                                        {/* Author: {(this.props.author[0] === "") ? (<Input placeholder="Please enter the author"/>) : (this.props.author)} */}
+                                    
+                                        Author: {(this.props.author === "") ? (<Input placeholder="Please enter the author"/>) : (this.props.author)}
                                     </div>
                                     <div className="techstack author">
-                                        Technologies used: {this.props.techStack.length}
+                                        Technologies used: {(this.props.techStack !== undefined) ? (this.props.techStack.length) : (0)}
                                     </div>
                                     
 
@@ -65,11 +69,11 @@ class Results extends Component {
 
                                                 <div id="overview-wegot-review" className="overviewWegotReview">
                                                     <div className="overviewWegotDetailsBox Pass">
-                                                    <div className="overviewWegotRatingDetails">{this.props.pass.length}</div>
+                                                    <div className="overviewWegotRatingDetails">{(this.props.pass !== undefined) ? (this.props.pass.length) : (0)}</div>
                                                     <span className="overviewWegotDetailsSubtitle">Pass</span>
                                                     </div>
                                                     <div className="overviewWegotDetailsBox overviewWegotMidbox Fail">
-                                                    <div className="overviewWegotRatingDetails">{this.props.fail.length}</div>
+                                                    <div className="overviewWegotRatingDetails">{(this.props.fail !== undefined) ? (this.props.fail.length) : (0)}</div>
                                                     <span className="overviewWegotDetailsSubtitle">Fail</span>
                                                     </div>
                                                     <div className="overviewWegotDetailsBox">
@@ -110,11 +114,12 @@ class Results extends Component {
                                 <div className="sidebar">
                                     Most Popular Tech Used
                                     <div>
-                                        {this.props.techStack.map((tech, i) => {
+                                    {(this.props.techStack !== undefined) ? (
+                                        this.props.techStack.map((tech, i) => {
                                             return (             
                                                 <Badge key={i} href="#" >{tech[0]}</Badge>
                                             )
-                                        })}
+                                        })) : (<div> </div>)}
                                     </div>
                                 </div>
                             </Col>

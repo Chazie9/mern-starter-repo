@@ -5,10 +5,11 @@ const cors = require('cors');
 // const router = require('./router.js')
 const morgan = require('morgan');
 const BodyParser = require('body-parser');
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const axios = require('axios');
 const app = express();
 const fetch = require('node-fetch');
+const path = require('path');
 
 var helmet = require('helmet');
 
@@ -37,7 +38,29 @@ app.use(express.static('./client/dist'));
 // .then(res => res.text())
 // .then(body => console.log(body));
 
+app.get('/review/:id', function(req, res) {
 
+    console.log('i got the request for tutorial =>', req.params.id)
+    db.getSingleReview(req.params.id).then((bod) => res.send(bod))
+    // submittedAnswers.addUpvoteToAnswer(req.params.id, function(updatedData) {
+    //   console.log('logging', updatedData);
+    //   res.send(updatedData);
+    // })
+    
+    // db.getDefaultTopScores().then((bod) => res.send(bod))
+    // .then(data => console.log(data)).then(data => res.send(data))
+
+    
+})
+
+
+
+app.get('/api/getTopScores', function(req, res) {
+    
+    db.getDefaultTopScores().then((bod) => res.send(bod))
+    // .then(data => console.log(data)).then(data => res.send(data))
+    
+})
 
 
 
@@ -185,27 +208,37 @@ app.put('/api/computeScore', function(req, res){
                 db.addTutorial(tutorial, function(req, res){
                     console.log('i am creating a tutorial', tutorial)
                 });
-
-                let gitArray = gitUrl[0].split('/');
-                console.log('I want the user', gitArray[3])
+                console.log(gitUrl, 'what is this?')
+                // if(gitUrl[0] !== []) {
+                //     let gitArray = gitUrl[0].split('/');
+                //     console.log('I want the user', gitArray[3])
+                // }
                 
-                fetch(`https://api.github.com/users/${gitArray[3]}`)
-                .then(res => res.text())
-                .then(body => {
-                    obj = JSON.parse(body);
+                
+                
+                // fetch(`https://api.github.com/users/${gitArray[3]}`)
+                // .then(res => res.text())
+                // .then(body => {
+                //     obj = JSON.parse(body);
     
-                    console.log('I og the url avatar', obj)
-                    res.send({name: name, author: author, authorImg: obj.avatar_url ,score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray, courseUrl: courseUrl })
-                })
+                //     console.log('I og the url avatar', obj)
+                //     // res.send({name: name, author: author, authorImg: obj.avatar_url ,score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray, courseUrl: courseUrl })
+                // })
+                res.send({name: name, author: author, authorImg: obj.avatar_url ,score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray, courseUrl: courseUrl })
 
                 // res.send({name: name, author: author, score: finalScore, gitUrl: gitUrl[0], list: listOfDependicies, scoreDetails: scoreDetailsArray, pass: scorePassArray, fail: scoreFailArray })
             }
-        })
+        }).catch((err) => console.log(err, 'from server line 209'))
     })
 });
 
 
 //app.use(router);
+
+app.get('*', function (req, res) {
+    res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
+});
+
 
 
 

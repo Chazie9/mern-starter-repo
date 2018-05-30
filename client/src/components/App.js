@@ -4,6 +4,8 @@ import SubmitTutorial from './SubmitTutorial/SubmitTutorial.jsx';
 import Results from './Results/Results.jsx';
 import About from './About/About';
 import CollectMoreInfo from './CollectMoreInfo/CollectMoreInfo.jsx';
+import SearchResults from './SearchResultsPage/SearchResults';
+import TutorialDetails from './TutorialDetails/TutorialDetails';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect, BrowserRouter } from 'react-router-dom'
 
 import {
@@ -17,7 +19,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  Input } from 'reactstrap';
 
 
 class App extends React.Component {
@@ -72,10 +75,9 @@ class App extends React.Component {
 
   showTheResults = (tutInfo, link) => {
     let tutorial = {dependenicy: tutInfo, link, link}
-    getScore('http://34.227.176.215:3000/api/computeScore', tutorial)
-    //getScore('http://localhost:3000/api/computeScore', tutorial)
+    //getScore('http://34.227.176.215:3000/api/computeScore', tutorial)
+    getScore('http://localhost:3000/api/computeScore', tutorial)
     .then(data => this.makeScore(data))
-    //.catch(error => console.error(error), this.displayError())
     .catch(error => { if(error) {this.displayError()} })
 
     let theScore;
@@ -102,15 +104,15 @@ class App extends React.Component {
     const askQuestions = this.state.askQuestions
     return (<BrowserRouter>
       <div className="container"> 
-              {/* <h1>Is it current?</h1> */}
               <div className="theNavBar">   
                     <Navbar color="light" light expand="md">
                     <NavbarBrand href="/">Is It Current?</NavbarBrand>
+                    <Input style={{width: '250px'}} />
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>  
                         <NavItem>
-                            <NavLink tag={Link} to="#">Top Scores</NavLink>
+                            <NavLink tag={Link} to="/topScores">Top Scores</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to="/about">About</NavLink>
@@ -121,7 +123,8 @@ class App extends React.Component {
                 </div>
                 <Switch>
                   <Route path="/about" render={(props) => <About goTo={this.goTo.bind(this)} {...props} />} />
-                  {/* <Route path="/sargent" render={(props) => <Sargent goTo={this.goTo.bind(this)} {...props} />} /> */}
+                  <Route path="/topScores" render={(props) => <SearchResults goTo={this.goTo.bind(this)} {...props} />} />
+                  <Route path="/review/:title" render={(props) => <TutorialDetails goTo={this.goTo.bind(this)} {...props} />} />
               </Switch>
               
 

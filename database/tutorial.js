@@ -51,6 +51,15 @@ let tutorialSchema = mongoose.Schema ({
 
 let Tutorial = mongoose.model('tutorial', tutorialSchema);
 
+const getSingleReview = (id) => {
+    let data = Tutorial.find({_id: id});
+    return data;
+}
+
+const getDefaultTopScores = () => {
+    let data = Tutorial.find();
+    return data;
+}
 
 const addTutorial = (tutorial, callback) => {
 
@@ -119,3 +128,5 @@ const addTutorial = (tutorial, callback) => {
 }
 
 module.exports.addTutorial = addTutorial;
+module.exports.getDefaultTopScores = getDefaultTopScores;
+module.exports.getSingleReview = getSingleReview;

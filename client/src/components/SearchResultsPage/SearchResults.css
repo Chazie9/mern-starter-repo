@@ -1,0 +1,26 @@
+.SearchResultsContainer {
+    margin-bottom: 750px;
+    
+}
+
+.headerBar {
+    /* border: black 1px solid; */
+    /* height: 125px; */
+    margin: 12px;
+    padding-left: 205px;
+}
+
+.SearchResultsLeftSide {
+    /* border: black 1px solid; */
+    width: 255px;
+}
+
+.theLeft {
+    display: flex;
+    align-content: column;
+    /* border: black 2px solid; */
+}
+
+.SearchResultsMain {
+    width: 100%;
+}
