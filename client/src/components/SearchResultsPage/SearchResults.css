@@ -1,6 +1,6 @@
 .SearchResultsContainer {
     margin-bottom: 750px;
-    
+    margin-top: 16px;
 }
 
 .headerBar {
@@ -13,6 +13,7 @@
 .SearchResultsLeftSide {
     /* border: black 1px solid; */
     width: 255px;
+    padding-top: 10px;
 }
 
 .theLeft {

@@ -7,6 +7,7 @@ import CollectMoreInfo from './CollectMoreInfo/CollectMoreInfo.jsx';
 import SearchResults from './SearchResultsPage/SearchResults';
 import TutorialDetails from './TutorialDetails/TutorialDetails';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect, BrowserRouter } from 'react-router-dom'
+import './App.css';
 
 import {
   Collapse,
@@ -124,7 +125,7 @@ class App extends React.Component {
                 <Switch>
                   <Route path="/about" render={(props) => <About goTo={this.goTo.bind(this)} {...props} />} />
                   <Route path="/topScores" render={(props) => <SearchResults goTo={this.goTo.bind(this)} {...props} />} />
-                  <Route path="/review/:title" render={(props) => <TutorialDetails goTo={this.goTo.bind(this)} {...props} />} />
+                  <Route path="/review/:title" render={(props) => <TutorialDetails goTo={this.goTo.bind(this)} {...props}/>} />
               </Switch>
               
 
@@ -135,8 +136,15 @@ class App extends React.Component {
                   ) : (                  
                     <Results tutorialLink={this.state.tutorialLink} author={this.state.author} title={this.state.name} gitUrl={this.state.gitUrl} theScore={this.state.theScore} techStack={this.state.techStack} pass={this.state.pass} fail={this.state.fail}/>
                   )
-                ) : (                  
-                  <SubmitTutorial showTheResults={this.showTheResults}/>
+                ) : (    
+                  <div className="theChoice">              
+                    <SubmitTutorial showTheResults={this.showTheResults}/>
+                    <div>
+                      Or view already ranked tutorials
+                      <br />
+                      <NavLink tag={Link} to="/about">About</NavLink>                      
+                    </div>
+                  </div>
                 )}
               </div>
             </div>

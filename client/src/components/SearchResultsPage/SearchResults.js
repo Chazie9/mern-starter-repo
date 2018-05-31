@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import SearchResultCard from './SearchResultCard/SearchResultCard';
 import { Card, Button, CardTitle, CardText, CardSubtitle, CardBody, CardImg, CardLink, Link, Form, FormGroup, Label, Input, FormText, CustomInput } from 'reactstrap';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem } from 'reactstrap';
 import './SearchResults.css';
+import TutorialDetails from '../TutorialDetails/TutorialDetails';
 
 class SearchResults extends Component {
 
@@ -10,7 +23,11 @@ class SearchResults extends Component {
 
         this.state = {
             searchResults: [],
-            filtersApplied: []
+            filtersApplied: [],
+            showDetails: false,
+            tutorialIndex: 0,
+            sortBy: 'Score',
+            sortResultsByScore: []
         }
     }
 
@@ -36,96 +53,107 @@ class SearchResults extends Component {
 
     setResults = (apiResults) => {
         console.log(apiResults)
+
+        // let scoreArray = [];
+        // apiResults.forEach((item) => {
+
+        // })
+
+        apiResults.sort(function (a, b) {
+            return b.currentScore - a.currentScore;
+          });
+
+
+
         this.setState({
             searchResults: apiResults
         })
+    }
+
+    setIndex = (index) => {
+        this.setState({
+            tutorialIndex: index
+        })
+    }
+
+    handleChange = () => {
+        console.log('handling change')
+        this.sortResults()
+    }
+
+    sortResults = () => {
+        let searchResults = this.state.searchResults
+
+        let sorted = searchResults.sort()
+        console.log(sorted, 'sorted array')
     }
     
 
     render() {
         let colors = ["warning", "primary", "success", "info", "danger"]
+        const showDetails = this.state.showDetails;
         return (
             <div className="SearchResultsContainer">
-                <div className="SearchResultsFilterOptions">
+                {/* <div className="SearchResultsFilterOptions">
                        <div className="headerBar">
                             <Card>
                                 show the current applied filter options here
                             </Card>
                         </div>
-                </div>
+                </div> */}
 
-                <div className="theLeft">
+                {/* <div className="theLeft">
                     <div className="SearchResultsLeftSide">
+                        <Form> */}
+                        {/* <legend>Filter Options</legend> */}
+                        {/* <FormGroup>
+                            <Label for="exampleSelect">Sort By</Label>
+                            <Input onChange={this.handleChange} type="select" name="select" id="exampleSelect">
+                                <option>Score</option>
+                                <option>Platform</option>
+                                <option>Price</option>
+                            </Input>
+                        </FormGroup> */}
 
-                        <Form>
-                            <FormGroup tag="fieldset">
-                            <legend>Radio Buttons</legend>
-                            <FormGroup check>
-                                <Label check>
-                                <Input type="checkbox" />{' '}
-                                Check me out
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                                <CustomInput type="checkbox" id="exampleCustomCheckbox" label="this custom checkbox" />
-                            </FormGroup>
-                            <FormGroup check disabled>
-                                <Label check>
-                                <Input type="checkbox" />{' '}
-                                Check me out
-                                </Label>
-                            </FormGroup>
-                            </FormGroup>
-
-                            <FormGroup tag="fieldset">
-                            <legend>Radio Buttons</legend>
-                            <FormGroup check>
-                                <Label check>
+                            {/* <FormGroup tag="fieldset">
+                                <Label for="exampleEmail">Technologies</Label>
+                                <FormGroup check>
+                                    <Label check>
                                     <Input type="checkbox" />{' '}
                                     Check me out
-                                </Label>
-                                <Label check>
+                                    </Label>
+                                </FormGroup>
+                        
+                                <FormGroup check disabled>
+                                    <Label check>
                                     <Input type="checkbox" />{' '}
                                     Check me out
-                                </Label>
-                                <Label check>
-                                    <Input type="checkbox" />{' '}
-                                    Check me out
-                                </Label>
-                                <Label check>
-                                    <Input type="checkbox" />{' '}
-                                    Check me out
-                                </Label>
-                                <Label check>
-                                    <Input type="checkbox" />{' '}
-                                    Check me out
-                                </Label>
+                                    </Label>
+                                </FormGroup>
                             </FormGroup>
-                            </FormGroup>
-                            
                             <FormGroup>
-                            <legend>Radio Buttons</legend>
-                            {/* <Label for="exampleCheckbox">Checkboxes</Label> */}
-                            <div>
-                              <CustomInput type="checkbox" id="exampleCustomCheckbox" label="Check this custom checkbox" />
-                              <CustomInput type="checkbox" id="exampleCustomCheckbox2" label="Or this one" />
-                              <CustomInput type="checkbox" id="exampleCustomCheckbox3" label="But not this disabled one" disabled />
-                            </div>
+                                <Label for="exampleEmail">Email</Label>
+                                <div>
+                                <CustomInput type="checkbox" id="exampleCustomCheckbox" label="Check this custom checkbox" />
+                                <CustomInput type="checkbox" id="exampleCustomCheckbox2" label="Or this one" />
+                                <CustomInput type="checkbox" id="exampleCustomCheckbox3" label="But not this one" />
+                                </div>
                           </FormGroup>
-                            <Button>Submit</Button>
-                        </Form>
-                    </div>
+                            <Button>Update</Button> */}
+                        {/* </Form> */}
+                    {/* </div> */}
                     <div className="SearchResultsMain">
-                        {this.state.searchResults.map((item, i) => {
-                            let count = 5 % (i+1);
-                            if(count == NaN) {
-                                count = 3;
-                            }
-                            console.log(count)
-                            return <SearchResultCard color={colors[count]} item={item} key={i} />
-                        })}
+                            {this.state.searchResults.map((item, i) => {
+                                let count = 5 % (i+1);
+                                if(count == NaN) {
+                                    count = 3;
+                                }
+                                console.log(count)
+                                return <SearchResultCard color={colors[count]} setIndex={this.setIndex} item={item} key={i} />
+                            })}
                     </div>
-                </div>
+                {/* </div> */}
+
             </div>
         )
     }

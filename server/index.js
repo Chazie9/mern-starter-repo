@@ -38,7 +38,7 @@ app.use(express.static('./client/dist'));
 // .then(res => res.text())
 // .then(body => console.log(body));
 
-app.get('/review/:id', function(req, res) {
+app.get('/api/review/:id', function(req, res) {
 
     console.log('i got the request for tutorial =>', req.params.id)
     db.getSingleReview(req.params.id).then((bod) => res.send(bod))
@@ -50,9 +50,11 @@ app.get('/review/:id', function(req, res) {
     // db.getDefaultTopScores().then((bod) => res.send(bod))
     // .then(data => console.log(data)).then(data => res.send(data))
 
-    
 })
 
+app.get('/review:id', function (req, res) {
+    res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
+});
 
 
 app.get('/api/getTopScores', function(req, res) {
@@ -234,6 +236,7 @@ app.put('/api/computeScore', function(req, res){
 
 
 //app.use(router);
+
 
 app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));

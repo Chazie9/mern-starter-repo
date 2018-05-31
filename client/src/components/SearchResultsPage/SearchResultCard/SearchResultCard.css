@@ -10,8 +10,10 @@
 
 .leftSide {
     display: flex;
-    justify-content: column;
-    align-items: center;
+    flex-direction: flex-end;
+    justify-content: space-between;
+    align-items: space;
+    
 }
 
 
@@ -19,3 +21,7 @@
     height: 100px;
     width: 150px;
 }
+
+/* .leftRightSide {
+    
+} */

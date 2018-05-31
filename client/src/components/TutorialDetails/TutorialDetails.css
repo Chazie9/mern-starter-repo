@@ -5,3 +5,16 @@
     padding: 26px 32px 32px;
     margin-top: 12px; */
 }
+
+.buttonIdeaHolder {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.tutorialInfo {
+    border: 1px solid white;
+    background: white;
+    padding: 26px 32px 32px;
+    margin-top: 12px;
+}
