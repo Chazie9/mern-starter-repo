@@ -37,13 +37,16 @@ class TutorialDetails extends Component {
         }
 
         this.toggle = this.toggle.bind(this);
+        this.toggle1 = this.toggle1.bind(this);
+        this.toggle2 = this.toggle2.bind(this);
+        this.toggle3 = this.toggle3.bind(this);
     }
 
     
 
     componentDidMount() {
         let tutorialId = this.props.match.params.title
-        getTutorialReview(`http://localhost:3000/api/review/${tutorialId}`)
+        getTutorialReview(`/api/review/${tutorialId}`)
         .then(data => this.setResults(data))
         .catch(error => { if(error) {this.displayError()} })
     
@@ -74,7 +77,7 @@ class TutorialDetails extends Component {
           theScore: data[0].currentScore, 
           name: data[0].title, 
           author: data[0].author, 
-          gitUrl: data[0].gitUrl,
+          gitUrl: data[0].githubUrl,
           techStack: data[0].techStack,
           tutorialLink: data[0].courseUrl,
           pass: passCount,
@@ -221,8 +224,10 @@ class TutorialDetails extends Component {
                         </Navbar>
                     </div> */}
                 </Container>
+                <Container>
                 <Row>         
                 <Col md="8">  
+                
                 <div className="tutorialInfo" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Score Details</div>
                         <Collapse isOpen={this.state.collapse}>
                         <Card>
@@ -234,8 +239,9 @@ class TutorialDetails extends Component {
                             </Col>
                         </CardBody>
                         </Card>
-                        </Collapse>      
-                <div>
+                        </Collapse>     
+                         
+                
                     <div className="tutorialInfo" onClick={this.toggle1} style={{ marginBottom: '1rem' }}>Reviews</div>
                         <Collapse isOpen={this.state.collapse1}>
                         <Card>
@@ -277,10 +283,11 @@ class TutorialDetails extends Component {
                         </Card>
                         </Collapse>    
                            
-                </div>
+                
                 </Col>
                 
                 </Row>
+                </Container>
             </div>
         )
     }

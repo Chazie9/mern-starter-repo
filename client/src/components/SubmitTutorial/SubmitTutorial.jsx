@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Form, FormText, FormGroup, Label, CardTitle} from 'reactstrap';
+import { Button, Card, Input, Form, FormText, FormGroup, Label, CardTitle} from 'reactstrap';
 import './SubmitTutorial.css';
 
 class SubmitTutorial extends Component {
@@ -53,7 +53,7 @@ class SubmitTutorial extends Component {
   
 render() {
       return (
-        <div className="main-tut-submit">
+        <Card className="main-tut-submit">
         <Form >
             <FormGroup>
                 <CardTitle color="muted">
@@ -70,7 +70,7 @@ render() {
             </FormGroup>
             <Button onClick={this.handleSubmit}>Submit</Button>
         </Form>
-        </div>
+        </Card>
       );
     }
 }

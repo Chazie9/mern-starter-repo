@@ -50,6 +50,7 @@ class Results extends Component {
                                         </div> */}
                                     <Row>
                                         <div className="threeParts">
+                                            
                                             <Card>
 
                                                 {/* <div id="overview-wegot-review" className="overviewWegotReview">

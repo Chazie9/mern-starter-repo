@@ -3,6 +3,29 @@
 }
 .theChoice {
     display: flex;
-    flex-direction: column;
+    flex-direction: flex-start;
     justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* .option2 {
+    margin-left: 8px;
+    padding: 26px 32px 32px;
+    margin-top: 12px;
+    border: 1px solid white;
+    background: white;
+    
+} */
+
+.option2Card {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 8px;
+    padding: 26px 32px 32px;
+    margin-top: 12px;
+    border: 0;
+    /* background: white; */
+    
 }

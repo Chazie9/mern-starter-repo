@@ -5,7 +5,7 @@ const cors = require('cors');
 // const router = require('./router.js')
 const morgan = require('morgan');
 const BodyParser = require('body-parser');
-const PORT = process.env.PORT || 3000;
+
 const axios = require('axios');
 const app = express();
 const fetch = require('node-fetch');
@@ -14,8 +14,11 @@ const path = require('path');
 var helmet = require('helmet');
 
 const prepForCompute = require('./helpers/prepForCompute');
- 
+
 require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+// require('dotenv').config();
+// const PORT = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
 app.use(cors());
@@ -52,9 +55,9 @@ app.get('/api/review/:id', function(req, res) {
 
 })
 
-app.get('/review:id', function (req, res) {
-    res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
-});
+// app.get('/review:id', function (req, res) {
+//     res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
+// });
 
 
 app.get('/api/getTopScores', function(req, res) {
@@ -245,4 +248,4 @@ app.get('*', function (req, res) {
 
 
 
-app.listen(PORT, ()=>console.log(`Listening on PORT ${PORT}!`));
+app.listen(PORT, () =>console.log(`Listening on PORT ${PORT}!`));

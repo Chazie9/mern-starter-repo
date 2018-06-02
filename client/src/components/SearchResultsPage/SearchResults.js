@@ -16,6 +16,7 @@ import {
 import './SearchResults.css';
 import TutorialDetails from '../TutorialDetails/TutorialDetails';
 
+
 class SearchResults extends Component {
 
     constructor(props){
@@ -35,7 +36,7 @@ class SearchResults extends Component {
    
     componentWillMount() {
         //getTopScores('http://34.227.176.215:3000/api/computeScore', tutorial)
-        getTopScores('http://localhost:3000/api/getTopScores')
+        getTopScores('/api/getTopScores')
         .then(data => this.setResults(data))
         .catch(error => { if(error) {this.displayError()} })
     
